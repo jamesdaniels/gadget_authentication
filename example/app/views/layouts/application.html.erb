@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GadgetAuthenticationTest</title>
+	<%= stylesheet_link_tag    'application' %>
+	<%= javascript_include_tag 'application' %>
+	<%= csrf_meta_tag %>
+</head>
+<body>
+
+	<% if logged_in? %>
+		<div>
+			Logged in as <%= link_to current_user.login, current_user %> |
+			<%= link_to 'All users', users_path %> | 
+			<%= link_to 'Account Activity', user_sessions_path %> |
+			<%= link_to 'Log out', current_user_session, :method => :delete %>
+		</div>
+		<% if current_user.pending? %>
+			<div>You account is still pending. Please follow the instructions sent to your email address to confirm your account.</div>
+		<% end %>
+	<% else %>
+		<div>
+			Not logged in |
+			<%= link_to 'Log in', new_user_session_path %> |
+			<%= link_to 'Sign up', new_user_path %>
+		</div>
+	<% end %>
+
+	<% flash.each do |flash_type, notice| %>
+		<%= content_tag :p, notice, :class => flash_type %>
+	<% end %>
+
+	<%= yield %>
+
+</body>
+</html>

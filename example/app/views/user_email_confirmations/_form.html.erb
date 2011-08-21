@@ -1,0 +1,17 @@
+<%= form_for(@user_email_confirmation) do |f| %>
+  <% if @user_email_confirmation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_email_confirmation.errors.count, "error") %> prohibited this user_email_confirmation from being saved:</h2>
+
+      <ul>
+      <% @user_email_confirmation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

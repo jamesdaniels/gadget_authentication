@@ -1,0 +1,24 @@
+<h1>Listing users</h1>
+
+<table>
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+
+<% @users.each do |user| %>
+	<tr>
+		<td><%= user.login %></td>
+		<td><%= user.email %></td>
+		<td><%= user.state %></td>
+		<td><%= link_to 'Show', user %></td>
+		<td><%= link_to 'Edit', edit_user_path(user) if user == current_user %></td>
+		<td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete if user == current_user %></td>
+	</tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Invite User', new_user_path %>
